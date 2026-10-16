@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EduTrack — Rendimiento académico</title>
+<link rel="stylesheet" href="css/variables.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+<div class="shell">
+  <aside class="side">
+    <div class="brand">
+      <div class="brand-mark">🍎</div>
+      <div><div class="brand-name">EduTrack</div><div class="brand-tag">Monitoreo ODS 4</div></div>
+    </div>
+    <nav class="main-nav" id="mainNav"></nav>
+    <div class="side-foot" id="sideFoot"></div>
+  </aside>
+
+  <main class="main">
+    <div class="topline">
+      <div>
+        <p class="eyebrow">Rendimiento académico</p>
+        <h1 class="page-title">Registrar rendimiento</h1>
+        <p class="subtitle">Notas y lectura por período — alimenta el análisis de riesgo automáticamente</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="form-grid">
+        <div class="field">
+          <label for="rEstudiante">Estudiante</label>
+          <select id="rEstudiante"></select>
+        </div>
+        <div class="field"><label for="rPeriodo">Período</label><input type="text" id="rPeriodo" placeholder="Ej. Periodo 3 — 2026"></div>
+        <div class="field"><label for="rMate">Matemáticas (0.0–5.0)</label><input type="text" id="rMate" placeholder="Ej. 3.8"></div>
+        <div class="field"><label for="rLeng">Lenguaje (0.0–5.0)</label><input type="text" id="rLeng" placeholder="Ej. 4.0"></div>
+        <div class="field"><label for="rLectura">Lectura (%)</label><input type="text" id="rLectura" placeholder="Ej. 85"></div>
+        <div class="field" style="grid-column: 1 / -1;"><label for="rObs">Observaciones</label><input type="text" id="rObs" placeholder="Opcional"></div>
+      </div>
+      <p class="error-text" id="rError"></p>
+      <button class="btn primary" id="btnSaveRendimiento">Guardar</button>
+      <div class="toast" id="rendimientoToast"></div>
+      <p class="card-note" id="noStudentsNote" style="display:none; margin-top: 10px;">Aún no hay estudiantes registrados. Ve a <a href="estudiantes.html" style="color: var(--sdg-red-ink); font-weight: 500;">Estudiantes</a> y agrega uno primero.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-head"><span class="card-title">Rendimiento académico</span></div>
+      <table>
+        <thead><tr><th>Estudiante</th><th>Promedio</th><th>Lectura</th><th>Asistencia</th><th>Riesgo</th></tr></thead>
+        <tbody id="rendimientoTableBody"></tbody>
+      </table>
+      <p class="empty" id="rendimientoEmpty">Aún no se ha registrado rendimiento para ningún estudiante.</p>
+    </div>
+  </main>
+</div>
+
+<script src="js/core.js"></script>
+<script src="js/services/authService.js"></script>
+<script src="js/services/estudianteService.js"></script>
+<script src="js/services/rendimientoService.js"></script>
+<script src="js/nav.js"></script>
+<script src="js/pages/rendimiento.js"></script>
+</body>
+</html>

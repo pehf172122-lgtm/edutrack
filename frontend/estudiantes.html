@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EduTrack — Estudiantes</title>
+<link rel="stylesheet" href="css/variables.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+<div class="shell">
+  <aside class="side">
+    <div class="brand">
+      <div class="brand-mark">🍎</div>
+      <div><div class="brand-name">EduTrack</div><div class="brand-tag">Monitoreo ODS 4</div></div>
+    </div>
+    <nav class="main-nav" id="mainNav"></nav>
+    <div class="side-foot" id="sideFoot"></div>
+  </aside>
+
+  <main class="main">
+    <div class="topline">
+      <div>
+        <p class="eyebrow">Estudiantes</p>
+        <h1 class="page-title">Gestión de estudiantes</h1>
+        <p class="subtitle">Busca, registra y revisa indicadores y riesgo por estudiante</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="search-row">
+        <input type="text" id="studentSearch" placeholder="Buscar estudiante...">
+        <button class="btn primary" id="btnNewStudent">+ Nuevo</button>
+      </div>
+      <div id="newStudentForm" style="display:none; margin-bottom: 1rem;">
+        <p class="card-title" id="formTitle" style="margin-bottom: 10px;">Nuevo estudiante</p>
+        <div class="form-grid">
+          <div class="field"><label for="nsName">Nombre completo</label><input type="text" id="nsName" placeholder="Nombre y apellido"></div>
+          <div class="field"><label for="nsGrade">Grado / grupo</label><input type="text" id="nsGrade" placeholder="Ej. 4° A"></div>
+          <div class="field"><label for="nsAttendance">Asistencia (%)</label><input type="text" id="nsAttendance" placeholder="Ej. 90"></div>
+        </div>
+        <p class="error-text" id="nsError">Completa el nombre y el grado antes de guardar.</p>
+        <div style="display:flex; gap:8px;">
+          <button class="btn primary" id="btnSaveStudent">Guardar estudiante</button>
+          <button class="btn ghost" id="btnCancelStudent">Cancelar</button>
+        </div>
+      </div>
+      <table>
+        <thead><tr><th>Estudiante</th><th>Grado</th><th>Asistencia</th><th>Promedio</th><th>Lectura</th><th>Riesgo</th><th></th></tr></thead>
+        <tbody id="studentTableBody"></tbody>
+      </table>
+      <p class="empty" id="studentEmpty" style="display:none;">No se encontraron estudiantes con ese nombre.</p>
+    </div>
+
+    <div class="card" id="profileCard" style="display:none;">
+      <div class="card-head">
+        <span class="card-title">Perfil del estudiante</span>
+        <button class="btn ghost" id="btnCloseProfile">Cerrar</button>
+      </div>
+      <div id="profileBody"></div>
+    </div>
+  </main>
+</div>
+
+<script src="js/core.js"></script>
+<script src="js/services/authService.js"></script>
+<script src="js/services/estudianteService.js"></script>
+<script src="js/services/rendimientoService.js"></script>
+<script src="js/nav.js"></script>
+<script src="js/pages/estudiantes.js"></script>
+</body>
+</html>

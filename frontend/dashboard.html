@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EduTrack — Panel principal</title>
+<link rel="stylesheet" href="css/variables.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+<div class="shell">
+  <aside class="side">
+    <div class="brand">
+      <div class="brand-mark">🍎</div>
+      <div>
+        <div class="brand-name">EduTrack</div>
+        <div class="brand-tag">Monitoreo ODS 4</div>
+      </div>
+    </div>
+    <nav class="main-nav" id="mainNav"></nav>
+    <div class="side-foot" id="sideFoot"></div>
+  </aside>
+
+  <main class="main">
+    <div class="topline">
+      <div>
+        <p class="eyebrow">Panel principal</p>
+        <h1 class="page-title" id="greeting">Hola</h1>
+        <p class="subtitle">Resumen de indicadores educativos y riesgo de deserción</p>
+      </div>
+      <div class="period-pill" id="lastUpdate">—</div>
+    </div>
+
+    <div class="kpi-row">
+      <div class="kpi enroll">
+        <div class="kpi-label"><span class="indicator-name">Matrícula primaria</span><span class="indicator-code">SE.PRM.ENRR</span></div>
+        <div class="kpi-value" id="kpiMatricula">—</div>
+        <div class="kpi-delta" id="kpiMatriculaNote"></div>
+      </div>
+      <div class="kpi literacy">
+        <div class="kpi-label"><span class="indicator-name">Alfabetización</span><span class="indicator-code">SE.ADT.LITR.ZS</span></div>
+        <div class="kpi-value" id="kpiAlfabetizacion">—</div>
+        <div class="kpi-delta" id="kpiAlfabetizacionNote"></div>
+      </div>
+      <div class="kpi risk">
+        <div class="kpi-label">Estudiantes en riesgo</div>
+        <div class="kpi-value" id="alertCount">0</div>
+        <div class="kpi-delta down" id="riskBreakdown"></div>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-head">
+          <span class="card-title">Matrículas registradas por período</span>
+          <span class="card-note">según la fecha de matrícula ingresada</span>
+        </div>
+        <div class="bars" id="trendBars"></div>
+      </div>
+      <div class="card">
+        <div class="card-head"><span class="card-title">Estado de estudiantes</span></div>
+        <div id="riskSummary"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head"><span class="card-title">Alertas recientes</span></div>
+      <div class="alert-list" id="alertPreview"></div>
+      <p class="empty" id="dashAlertEmpty">Sin alertas activas todavía.</p>
+    </div>
+  </main>
+</div>
+
+<script src="js/core.js"></script>
+<script src="js/services/authService.js"></script>
+<script src="js/services/estudianteService.js"></script>
+<script src="js/services/alertaService.js"></script>
+<script src="js/services/matriculaService.js"></script>
+<script src="js/services/analyticsService.js"></script>
+<script src="js/nav.js"></script>
+<script src="js/pages/dashboard.js"></script>
+</body>
+</html>

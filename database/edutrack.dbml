@@ -1,0 +1,68 @@
+// Pega este contenido en https://dbdiagram.io para editar/exportar el DER.
+Table usuarios {
+  id integer [pk, increment]
+  nombre varchar(100) [not null]
+  email varchar(150) [not null, unique]
+  password_hash varchar(255) [not null]
+  rol varchar(20) [not null, default: 'docente', note: "admin | docente"]
+  creado_en timestamptz [not null, default: `now()`]
+}
+
+Table instituciones {
+  id integer [pk, increment]
+  nombre varchar(150) [not null, unique]
+  creado_en timestamptz [not null, default: `now()`]
+}
+
+Table estudiantes {
+  id integer [pk, increment]
+  nombre varchar(120) [not null]
+  documento varchar(20) [unique]
+  grado varchar(20) [not null]
+  asistencia numeric(5,2) [note: "0 a 100"]
+  creado_por integer [ref: > usuarios.id]
+  creado_en timestamptz [not null, default: `now()`]
+  actualizado_en timestamptz [not null, default: `now()`]
+}
+
+Table matriculas {
+  id integer [pk, increment]
+  estudiante_id integer [not null, ref: > estudiantes.id]
+  institucion_id integer [not null, ref: > instituciones.id]
+  grado varchar(20) [not null]
+  fecha_matricula date
+  ind_prm boolean [not null, default: true, note: "SE.PRM.ENRR"]
+  ind_lit boolean [not null, default: true, note: "SE.ADT.LITR.ZS"]
+  registrado_por integer [ref: > usuarios.id]
+  creado_en timestamptz [not null, default: `now()`]
+}
+
+Table rendimientos {
+  id integer [pk, increment]
+  estudiante_id integer [not null, ref: > estudiantes.id]
+  periodo varchar(40) [not null]
+  matematicas numeric(2,1) [note: "0 a 5"]
+  lenguaje numeric(2,1) [note: "0 a 5"]
+  lectura numeric(5,2) [note: "0 a 100"]
+  observaciones varchar(500)
+  registrado_por integer [ref: > usuarios.id]
+  creado_en timestamptz [not null, default: `now()`]
+}
+
+Table alertas_manuales {
+  id integer [pk, increment]
+  estudiante_nombre varchar(120) [not null]
+  grado varchar(20) [not null]
+  nivel varchar(10) [not null, note: "alto | medio"]
+  motivo varchar(300) [not null]
+  recomendacion varchar(300)
+  registrado_por integer [ref: > usuarios.id]
+  creado_en timestamptz [not null, default: `now()`]
+}
+
+Table reportes_descargas {
+  id integer [pk, increment]
+  nombre_archivo varchar(120) [not null]
+  usuario_id integer [ref: > usuarios.id]
+  creado_en timestamptz [not null, default: `now()`]
+}

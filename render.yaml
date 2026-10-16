@@ -1,0 +1,27 @@
+# Blueprint de Render: crea la base PostgreSQL y el servicio web enlazados.
+# Verifica en Render que el plan elegido esté disponible y su vigencia.
+databases:
+  - name: edutrack-db
+    databaseName: edutrack
+    user: edutrack
+    plan: free
+
+services:
+  - type: web
+    name: edutrack
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        fromDatabase:
+          name: edutrack-db
+          property: connectionString
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: AUTO_INIT_DB
+        value: "true"

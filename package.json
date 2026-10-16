@@ -1,0 +1,22 @@
+{
+  "name": "edutrack",
+  "version": "1.0.0",
+  "description": "EduTrack: monitoreo de indicadores educativos y alertas tempranas de deserción escolar (ODS 4)",
+  "main": "backend/server.js",
+  "scripts": {
+    "start": "node backend/server.js",
+    "dev": "node --watch backend/server.js",
+    "db:init": "node backend/src/scripts/initDb.js",
+    "db:reset": "node backend/src/scripts/initDb.js --reset",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.21.2",
+    "pg": "^8.13.1"
+  },
+  "license": "MIT"
+}

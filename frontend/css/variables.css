@@ -1,0 +1,49 @@
+:root {
+  --ink: #2c2318;
+  --ink-soft: #5c5040;
+  --ink-faint: #938671;
+  --paper: #faf4e6;
+  --panel: #fffdf8;
+  --line: #e8dcc2;
+
+  /* "Tablero": verde pizarrón para el menú lateral */
+  --navy: #2e5c45;
+  --navy-soft: #3f7257;
+
+  /* Rojo manzana: acento principal, botones, riesgo alto */
+  --sdg-red: #c1432b;
+  --sdg-red-ink: #7a2a1a;
+  --sdg-red-bg: #fbe6dd;
+
+  /* Verde bajo riesgo / confirmaciones */
+  --teal: #3c7a52;
+  --teal-ink: #214a2f;
+  --teal-bg: #e3f0e6;
+
+  /* Amarillo lápiz: riesgo medio */
+  --amber: #d99a2b;
+  --amber-ink: #7a541a;
+  --amber-bg: #faf0da;
+
+  --radius: 10px;
+  --radius-lg: 16px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ink: #f1e9d8;
+    --ink-soft: #cfc3a9;
+    --ink-faint: #93886e;
+    --paper: #16130d;
+    --panel: #1f1b12;
+    --line: #37301f;
+    --navy: #1b3a2b;
+    --navy-soft: #27503c;
+    --sdg-red-bg: #3c2017;
+    --sdg-red-ink: #f0a98f;
+    --teal-bg: #16311f;
+    --teal-ink: #93d2a4;
+    --amber-bg: #352a10;
+    --amber-ink: #f0c877;
+  }
+}

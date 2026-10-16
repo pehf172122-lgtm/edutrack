@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EduTrack — Matrícula</title>
+<link rel="stylesheet" href="css/variables.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+<div class="shell">
+  <aside class="side">
+    <div class="brand">
+      <div class="brand-mark">🍎</div>
+      <div><div class="brand-name">EduTrack</div><div class="brand-tag">Monitoreo ODS 4</div></div>
+    </div>
+    <nav class="main-nav" id="mainNav"></nav>
+    <div class="side-foot" id="sideFoot"></div>
+  </aside>
+
+  <main class="main">
+    <div class="topline">
+      <div>
+        <p class="eyebrow">Matrícula</p>
+        <h1 class="page-title">Registro de matrícula</h1>
+        <p class="subtitle">Registra al estudiante como parte del seguimiento del ODS 4</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="form-grid">
+        <div class="field"><label for="mName">Nombre completo</label><input type="text" id="mName" placeholder="Nombre del estudiante"></div>
+        <div class="field"><label for="mDoc">Documento de identidad</label><input type="text" id="mDoc" placeholder="Número de documento"></div>
+        <div class="field"><label for="mGrade">Grado / grupo</label><input type="text" id="mGrade" placeholder="Ej. 3° B"></div>
+        <div class="field"><label for="mDate">Fecha de matrícula</label><input type="date" id="mDate"></div>
+        <div class="field" style="grid-column: 1 / -1;"><label for="mInst">Institución educativa</label><input type="text" id="mInst" placeholder="Nombre de la institución"></div>
+      </div>
+      <label>Indicadores relacionados</label>
+      <div class="checkbox-row" style="margin-bottom: 1rem;">
+        <label class="checkbox-pill"><input type="checkbox" id="indPrm" checked> Matrícula primaria <span class="checkbox-code">SE.PRM.ENRR</span></label>
+        <label class="checkbox-pill"><input type="checkbox" id="indLit" checked> Alfabetización <span class="checkbox-code">SE.ADT.LITR.ZS</span></label>
+      </div>
+      <p class="error-text" id="mError"></p>
+      <div style="display:flex; gap:8px;">
+        <button class="btn primary" id="btnSaveMatricula">Guardar registro</button>
+        <button class="btn ghost" id="btnClearMatricula">Cancelar</button>
+      </div>
+      <div class="toast" id="matriculaToast"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-head"><span class="card-title">Registros recientes</span></div>
+      <table>
+        <thead><tr><th>Estudiante</th><th>Grado</th><th>Institución</th><th>Indicadores</th></tr></thead>
+        <tbody id="matriculaTableBody"></tbody>
+      </table>
+      <p class="empty" id="matriculaEmpty">Aún no se han registrado matrículas en esta sesión.</p>
+    </div>
+  </main>
+</div>
+
+<script src="js/core.js"></script>
+<script src="js/services/authService.js"></script>
+<script src="js/services/matriculaService.js"></script>
+<script src="js/nav.js"></script>
+<script src="js/pages/matricula.js"></script>
+</body>
+</html>

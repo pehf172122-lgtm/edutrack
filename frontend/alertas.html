@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EduTrack — Alertas tempranas</title>
+<link rel="stylesheet" href="css/variables.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+<div class="shell">
+  <aside class="side">
+    <div class="brand">
+      <div class="brand-mark">🍎</div>
+      <div><div class="brand-name">EduTrack</div><div class="brand-tag">Monitoreo ODS 4</div></div>
+    </div>
+    <nav class="main-nav" id="mainNav"></nav>
+    <div class="side-foot" id="sideFoot"></div>
+  </aside>
+
+  <main class="main">
+    <div class="topline">
+      <div>
+        <p class="eyebrow">Alertas</p>
+        <h1 class="page-title">Alertas tempranas de deserción</h1>
+        <p class="subtitle">Generadas automáticamente a partir de asistencia, promedio y lectura</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="kpi-row" style="margin-bottom: 0;">
+        <div class="kpi risk">
+          <div class="kpi-label">Alertas activas</div>
+          <div class="kpi-value" id="alertTotal">0</div>
+        </div>
+        <div class="kpi risk">
+          <div class="kpi-label">Riesgo alto</div>
+          <div class="kpi-value" id="alertHigh">0</div>
+        </div>
+        <div class="kpi literacy">
+          <div class="kpi-label">Riesgo medio</div>
+          <div class="kpi-value" id="alertMid">0</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <span class="card-title">Listado</span>
+        <div class="filter-row" id="filterRow">
+          <button class="chip active" data-filter="todos">Todos</button>
+          <button class="chip" data-filter="alto">Alto</button>
+          <button class="chip" data-filter="medio">Medio</button>
+        </div>
+      </div>
+      <div class="alert-list" id="fullAlertList"></div>
+      <p class="empty" id="alertEmpty">No hay alertas activas por el momento.</p>
+    </div>
+
+    <div class="card">
+      <button class="btn ghost" id="toggleManualForm">+ Registrar alerta manual (caso excepcional)</button>
+      <div id="manualForm" style="display:none; margin-top: 1rem;">
+        <p class="card-note" style="margin-bottom: 10px;">Úsalo solo cuando un riesgo se detecta por fuera del sistema (ej. aviso directo de un docente) y el estudiante no tiene datos de asistencia o rendimiento cargados aún.</p>
+        <div class="form-grid">
+          <div class="field"><label for="aName">Nombre del estudiante</label><input type="text" id="aName" placeholder="Nombre y apellido"></div>
+          <div class="field"><label for="aGrade">Grado / grupo</label><input type="text" id="aGrade" placeholder="Ej. 5° C"></div>
+          <div class="field">
+            <label for="aLevel">Nivel de riesgo</label>
+            <select id="aLevel">
+              <option value="alto">Riesgo alto</option>
+              <option value="medio">Riesgo medio</option>
+            </select>
+          </div>
+          <div class="field"><label for="aReason">Motivo</label><input type="text" id="aReason" placeholder="Ej. Aviso del docente titular"></div>
+          <div class="field" style="grid-column: 1 / -1;"><label for="aRec">Recomendación / seguimiento</label><input type="text" id="aRec" placeholder="Ej. Contactar al acudiente"></div>
+        </div>
+        <p class="error-text" id="aError"></p>
+        <button class="btn primary" id="btnSaveAlerta">Guardar alerta manual</button>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script src="js/core.js"></script>
+<script src="js/services/authService.js"></script>
+<script src="js/services/estudianteService.js"></script>
+<script src="js/services/alertaService.js"></script>
+<script src="js/nav.js"></script>
+<script src="js/pages/alertas.js"></script>
+</body>
+</html>

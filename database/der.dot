@@ -1,0 +1,97 @@
+digraph EduTrack_DER {
+  graph [rankdir=LR, splines=true, nodesep=0.5, ranksep=1.6, fontname="Helvetica", pad=0.4, bgcolor="white",
+         label="EduTrack — Diagrama entidad-relación (PostgreSQL, 3FN)\n PK = llave primaria · FK = llave foránea · UK = única · 1 = uno · N = muchos", labelloc=t, fontsize=20];
+  node  [shape=plain, fontname="Helvetica", fontsize=12];
+  edge  [fontname="Helvetica", fontsize=11, color="#33415c", fontcolor="#33415c", dir=both, arrowtail=tee, arrowhead=crowodot, labeldistance=2.2, penwidth=1.4];
+
+  usuarios [label=<
+    <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4" COLOR="#33415c">
+      <TR><TD COLSPAN="3" BGCOLOR="#33415c"><FONT COLOR="white"><B>usuarios</B></FONT></TD></TR>
+      <TR><TD ALIGN="LEFT"><B>PK</B></TD><TD ALIGN="LEFT">id</TD><TD ALIGN="LEFT">INTEGER</TD></TR>
+      <TR><TD ALIGN="LEFT">UK</TD><TD ALIGN="LEFT">email</TD><TD ALIGN="LEFT">VARCHAR(150)</TD></TR>
+      <TR><TD></TD><TD ALIGN="LEFT">nombre</TD><TD ALIGN="LEFT">VARCHAR(100)</TD></TR>
+      <TR><TD></TD><TD ALIGN="LEFT">password_hash</TD><TD ALIGN="LEFT">VARCHAR(255)</TD></TR>
+      <TR><TD></TD><TD ALIGN="LEFT">rol (admin|docente)</TD><TD ALIGN="LEFT">VARCHAR(20)</TD></TR>
+      <TR><TD></TD><TD ALIGN="LEFT">creado_en</TD><TD ALIGN="LEFT">TIMESTAMPTZ</TD></TR>
+    </TABLE>>];
+
+  estudiantes [label=<
+    <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4" COLOR="#0b6e69">
+      <TR><TD COLSPAN="3" BGCOLOR="#0b6e69"><FONT COLOR="white"><B>estudiantes</B></FONT></TD></TR>
+      <TR><TD ALIGN="LEFT"><B>PK</B></TD><TD ALIGN="LEFT">id</TD><TD ALIGN="LEFT">INTEGER</TD></TR>
+      <TR><TD ALIGN="LEFT">UK</TD><TD ALIGN="LEFT">documento</TD><TD ALIGN="LEFT">VARCHAR(20)</TD></TR>
+      <TR><TD></TD><TD ALIGN="LEFT">nombre</TD><TD ALIGN="LEFT">VARCHAR(120)</TD></TR>
+      <TR><TD></TD><TD ALIGN="LEFT">grado</TD><TD ALIGN="LEFT">VARCHAR(20)</TD></TR>
+      <TR><TD></TD><TD ALIGN="LEFT">asistencia (0–100)</TD><TD ALIGN="LEFT">NUMERIC(5,2)</TD></TR>
+      <TR><TD ALIGN="LEFT">FK</TD><TD ALIGN="LEFT">creado_por</TD><TD ALIGN="LEFT">INTEGER</TD></TR>
+      <TR><TD></TD><TD ALIGN="LEFT">creado_en</TD><TD ALIGN="LEFT">TIMESTAMPTZ</TD></TR>
+      <TR><TD></TD><TD ALIGN="LEFT">actualizado_en</TD><TD ALIGN="LEFT">TIMESTAMPTZ</TD></TR>
+    </TABLE>>];
+
+  matriculas [label=<
+    <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4" COLOR="#b45309">
+      <TR><TD COLSPAN="3" BGCOLOR="#b45309"><FONT COLOR="white"><B>matriculas</B></FONT></TD></TR>
+      <TR><TD ALIGN="LEFT"><B>PK</B></TD><TD ALIGN="LEFT">id</TD><TD ALIGN="LEFT">INTEGER</TD></TR>
+      <TR><TD ALIGN="LEFT">FK</TD><TD ALIGN="LEFT">estudiante_id</TD><TD ALIGN="LEFT">INTEGER</TD></TR>
+      <TR><TD ALIGN="LEFT">FK</TD><TD ALIGN="LEFT">institucion_id</TD><TD ALIGN="LEFT">INTEGER</TD></TR>
+      <TR><TD></TD><TD ALIGN="LEFT">grado</TD><TD ALIGN="LEFT">VARCHAR(20)</TD></TR>
+      <TR><TD></TD><TD ALIGN="LEFT">fecha_matricula</TD><TD ALIGN="LEFT">DATE</TD></TR>
+      <TR><TD></TD><TD ALIGN="LEFT">ind_prm (SE.PRM.ENRR)</TD><TD ALIGN="LEFT">BOOLEAN</TD></TR>
+      <TR><TD></TD><TD ALIGN="LEFT">ind_lit (SE.ADT.LITR.ZS)</TD><TD ALIGN="LEFT">BOOLEAN</TD></TR>
+      <TR><TD ALIGN="LEFT">FK</TD><TD ALIGN="LEFT">registrado_por</TD><TD ALIGN="LEFT">INTEGER</TD></TR>
+      <TR><TD></TD><TD ALIGN="LEFT">creado_en</TD><TD ALIGN="LEFT">TIMESTAMPTZ</TD></TR>
+    </TABLE>>];
+
+  instituciones [label=<
+    <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4" COLOR="#6b21a8">
+      <TR><TD COLSPAN="3" BGCOLOR="#6b21a8"><FONT COLOR="white"><B>instituciones</B></FONT></TD></TR>
+      <TR><TD ALIGN="LEFT"><B>PK</B></TD><TD ALIGN="LEFT">id</TD><TD ALIGN="LEFT">INTEGER</TD></TR>
+      <TR><TD ALIGN="LEFT">UK</TD><TD ALIGN="LEFT">nombre</TD><TD ALIGN="LEFT">VARCHAR(150)</TD></TR>
+      <TR><TD></TD><TD ALIGN="LEFT">creado_en</TD><TD ALIGN="LEFT">TIMESTAMPTZ</TD></TR>
+    </TABLE>>];
+
+  rendimientos [label=<
+    <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4" COLOR="#b91c1c">
+      <TR><TD COLSPAN="3" BGCOLOR="#b91c1c"><FONT COLOR="white"><B>rendimientos</B></FONT></TD></TR>
+      <TR><TD ALIGN="LEFT"><B>PK</B></TD><TD ALIGN="LEFT">id</TD><TD ALIGN="LEFT">INTEGER</TD></TR>
+      <TR><TD ALIGN="LEFT">FK</TD><TD ALIGN="LEFT">estudiante_id</TD><TD ALIGN="LEFT">INTEGER</TD></TR>
+      <TR><TD></TD><TD ALIGN="LEFT">periodo</TD><TD ALIGN="LEFT">VARCHAR(40)</TD></TR>
+      <TR><TD></TD><TD ALIGN="LEFT">matematicas (0–5)</TD><TD ALIGN="LEFT">NUMERIC(2,1)</TD></TR>
+      <TR><TD></TD><TD ALIGN="LEFT">lenguaje (0–5)</TD><TD ALIGN="LEFT">NUMERIC(2,1)</TD></TR>
+      <TR><TD></TD><TD ALIGN="LEFT">lectura (0–100)</TD><TD ALIGN="LEFT">NUMERIC(5,2)</TD></TR>
+      <TR><TD></TD><TD ALIGN="LEFT">observaciones</TD><TD ALIGN="LEFT">VARCHAR(500)</TD></TR>
+      <TR><TD ALIGN="LEFT">FK</TD><TD ALIGN="LEFT">registrado_por</TD><TD ALIGN="LEFT">INTEGER</TD></TR>
+      <TR><TD></TD><TD ALIGN="LEFT">creado_en</TD><TD ALIGN="LEFT">TIMESTAMPTZ</TD></TR>
+    </TABLE>>];
+
+  alertas_manuales [label=<
+    <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4" COLOR="#475569">
+      <TR><TD COLSPAN="3" BGCOLOR="#475569"><FONT COLOR="white"><B>alertas_manuales</B></FONT></TD></TR>
+      <TR><TD ALIGN="LEFT"><B>PK</B></TD><TD ALIGN="LEFT">id</TD><TD ALIGN="LEFT">INTEGER</TD></TR>
+      <TR><TD></TD><TD ALIGN="LEFT">estudiante_nombre</TD><TD ALIGN="LEFT">VARCHAR(120)</TD></TR>
+      <TR><TD></TD><TD ALIGN="LEFT">grado</TD><TD ALIGN="LEFT">VARCHAR(20)</TD></TR>
+      <TR><TD></TD><TD ALIGN="LEFT">nivel (alto|medio)</TD><TD ALIGN="LEFT">VARCHAR(10)</TD></TR>
+      <TR><TD></TD><TD ALIGN="LEFT">motivo</TD><TD ALIGN="LEFT">VARCHAR(300)</TD></TR>
+      <TR><TD></TD><TD ALIGN="LEFT">recomendacion</TD><TD ALIGN="LEFT">VARCHAR(300)</TD></TR>
+      <TR><TD ALIGN="LEFT">FK</TD><TD ALIGN="LEFT">registrado_por</TD><TD ALIGN="LEFT">INTEGER</TD></TR>
+      <TR><TD></TD><TD ALIGN="LEFT">creado_en</TD><TD ALIGN="LEFT">TIMESTAMPTZ</TD></TR>
+    </TABLE>>];
+
+  reportes_descargas [label=<
+    <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4" COLOR="#475569">
+      <TR><TD COLSPAN="3" BGCOLOR="#475569"><FONT COLOR="white"><B>reportes_descargas</B></FONT></TD></TR>
+      <TR><TD ALIGN="LEFT"><B>PK</B></TD><TD ALIGN="LEFT">id</TD><TD ALIGN="LEFT">INTEGER</TD></TR>
+      <TR><TD></TD><TD ALIGN="LEFT">nombre_archivo</TD><TD ALIGN="LEFT">VARCHAR(120)</TD></TR>
+      <TR><TD ALIGN="LEFT">FK</TD><TD ALIGN="LEFT">usuario_id</TD><TD ALIGN="LEFT">INTEGER</TD></TR>
+      <TR><TD></TD><TD ALIGN="LEFT">creado_en</TD><TD ALIGN="LEFT">TIMESTAMPTZ</TD></TR>
+    </TABLE>>];
+
+  usuarios -> estudiantes        [taillabel="1", headlabel="N", label=" registra "];
+  usuarios -> alertas_manuales   [taillabel="1", headlabel="N", label=" registra "];
+  usuarios -> reportes_descargas [taillabel="1", headlabel="N", label=" descarga "];
+  usuarios -> matriculas         [taillabel="1", headlabel="N", label=" registra "];
+  usuarios -> rendimientos       [taillabel="1", headlabel="N", label=" registra "];
+  estudiantes   -> matriculas    [taillabel="1", headlabel="N", label=" tiene "];
+  estudiantes   -> rendimientos  [taillabel="1", headlabel="N", label=" acumula "];
+  instituciones -> matriculas    [taillabel="1", headlabel="N", label=" recibe "];
+}
